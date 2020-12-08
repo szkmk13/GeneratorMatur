@@ -38,7 +38,7 @@ def dodawanie_ulamkow():
 
 def skracanie(licznik, mianownik):
     ulamek = 0
-    dzielniki = [2, 3, 5, 7,11,13]
+    dzielniki = [2, 3, 5, 7, 11, 13]
     ujemne = False
     if licznik * mianownik < 0:
         ujemne = True
@@ -49,11 +49,11 @@ def skracanie(licznik, mianownik):
             licznik = licznik / dzielnik
             mianownik = mianownik / dzielnik
 
-    while licznik > mianownik:      #wyłączanie calosci
+    while licznik > mianownik:  # wyłączanie calosci
         licznik -= mianownik
         ulamek += 1
     if licznik == mianownik:
-        return int(ulamek+licznik/mianownik)
+        return int(ulamek + licznik / mianownik)
 
     if abs(licznik) == 1 and abs(mianownik) == 3:
         ulamek = str(ulamek) + '.(3)'
@@ -64,13 +64,9 @@ def skracanie(licznik, mianownik):
     elif abs(mianownik) == 9:
         ulamek = str(ulamek) + f' {licznik}/9'
     else:
-        ulamek =ulamek +licznik/mianownik
-
+        ulamek = ulamek + licznik / mianownik
 
     if ujemne is True:
-        ulamek="-"+str(ulamek)
-
-
-
+        ulamek = "-" + str(ulamek)
 
     return ulamek

@@ -37,13 +37,14 @@ def liniowa():
         r = randint(-6, 6)
         t = randint(-6, 6)
         y = randint(2, 6)
-        if 0 not in [q,w,e,r,t,y] and 1 not in [q,w,e,r,t,y] and -1 not in [q,w,e,r,t,y]:
+        if 0 not in [q, w, e, r, t, y] and 1 not in [q, w, e, r, t, y] and -1 not in [q, w, e, r, t, y]:
             break
     if wersja == 1:
-        nierownosc = f'{q}({w}x{choice(["+","-"])}{e}){znak}{r}({t}{choice(["+","-"])}{y}x)'
+        nierownosc = f'{q}({w}x{choice(["+", "-"])}{e}){znak}{r}({t}{choice(["+", "-"])}{y}x)'
     elif wersja == 2:
         nierownosc = f'{q}({w}x{choice(["+", "-"])}{e}\u221A{2}){znak}{r}x{choice(["+", "-"])}{y}\u221A{2}'
     f.write(f'Oblicz:\n {nierownosc} \n\n')
+
 
 def z_wartoscia_bezwzledna():
     znak = choice(['\u003c', '\u003e', '\u2264', '\u2265'])
