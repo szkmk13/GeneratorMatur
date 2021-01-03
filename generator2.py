@@ -1,4 +1,4 @@
-from random import randint, choice
+from random import randint, choice, random
 
 import ciag
 import matura
@@ -7,8 +7,13 @@ import ułamki
 import planimetria
 
 
+
+def upraszczanie_wyrazen():
+    print(f'x -3x +8x -x = ')
+
+
 def wypisanie_liczb():
-    print(f"losowa liczba to: {randint(2,93)}")
+    print(f"losowa liczba to: {randint(2, 93)}")
     ux = 0
     uy = 0
     a = 0
@@ -34,17 +39,20 @@ def wypisanie_liczb():
 
 
 class Counter:
-    count=0
+    count = 0
+
     def __init__(self):
         self.count += 1
         print(self.count)
 
+
 count = 0
+
+
 def Counter(function):
     globals()['count'] += 1
-    print(count,end='')
+    print(count, end='. ')
     function()
-
 
 
 f = open("zadania.doc", 'w', encoding="utf-8")
@@ -56,37 +64,44 @@ while True:
     3. Matura
     4.testownie
     """)
-   # print(ułamki.skracanie(8, 4))
-    cotam = int(input("Wybierz: "))
+    # print(ułamki.skracanie(8, 4))
+    try:
+        cotam = int(input("Wybierz: "))
 
-    if cotam == 1:
-        ułamki.dodawanie_ulamkow()
-    elif cotam == 2:
-        Counter(wypisanie_liczb)
-        Counter(wypisanie_liczb)
-        Counter(wypisanie_liczb)
-    elif cotam == 3:
-        #f.write('Zadania otwarte:\n')
-        matura.logarytm(choice([2, 3, 5]))
-        matura.pierwiastki()
-        matura.usuwanie_niewymiernosci()
-        matura.procenty()
-        matura.procenty()
-        matura.zadanie_z_2_liczbami()
-        matura.ilosc_rozwiazan()
-        matura.liniowa()
-        matura.liniowa()
-        nierownosc.kwadratowa()
-        ciag.arytmetyczny_zamkniete()
-        ciag.geometryczny_zamkniete()
-        nierownosc.liniowa()
-        nierownosc.z_wartoscia_bezwzledna()
-        planimetria.trojkaty()
-
-
-    elif cotam == 4:
-        for i in range(10):
+        if cotam == 1:
+            ułamki.dodawanie_ulamkow()
+        elif cotam == 2:
+            Counter(wypisanie_liczb)
+            Counter(wypisanie_liczb)
+            Counter(wypisanie_liczb)
+        elif cotam == 3:
+            # f.write('Zadania otwarte:\n')
+            matura.logarytm(choice([2, 3, 5]))
+            matura.pierwiastki()
+            matura.usuwanie_niewymiernosci()
+            matura.procenty()
+            matura.procenty()
+            matura.rozne()
+            matura.ilosc_rozwiazan()
+            matura.liniowa()
+            matura.liniowa()
+            nierownosc.kwadratowa()
+            ciag.arytmetyczny_zamkniete()
+            ciag.geometryczny_zamkniete()
+            nierownosc.liniowa()
+            nierownosc.z_wartoscia_bezwzledna()
+            planimetria.trojkaty()
             planimetria.czworokaty()
-    elif cotam == 0:
-        f.close()
-        break
+            planimetria.rozne()
+
+
+        elif cotam == 4:
+            for i in range(10):
+                matura.rozne()
+                matura.procenty()
+        elif cotam == 0:
+            f.close()
+            break
+
+    except ValueError:
+        print("Enter a number")

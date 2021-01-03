@@ -64,35 +64,16 @@ def usuwanie_niewymiernosci():
 
 
 def procenty():
-    rodzaj = randint(0, 8)
-    if rodzaj in [0, 1]:
-        f.write(
-            f'Cena towaru po obniżce o {randint(1, 5) * 5}% wynosi {randint(2, 12) * 252}zł. Cena przed rabatem to?\n\n')
-    if rodzaj in [2, 3]:
-        f.write(
+    choice([f.write(
+        f'Cena towaru po obniżce o {randint(1, 5) * 5}% wynosi {randint(2, 12) * 252}zł. Cena przed rabatem to?\n\n')
+        , f.write(
             f'Cena towaru po podwyżce o {randint(1, 3) * 20}% wynosi {randint(2, 12) * 336}zł. Cena przed podwyżką to?\n\n')
-    if rodzaj == 4:
-        f.write(
+        , f.write(
             f'Cena zmniejszono o {randint(1, 3) * 25}%. O ile % trzeba zwiększyć cenę aby wrócić do ceny początkowej?\n\n')
-    if rodzaj in [5, 6]:
-        f.write(f'Towar kosztuje {randint(3, 15) * 30}zł jego cena po obniżce o {randint(1, 4) * 5}% wynosi:\n\n')
-    if rodzaj in [7, 8]:
-        f.write(f'Towar kosztuje {randint(3, 15) * 30}zł jego cena po podwyżce o {randint(1, 4) * 5}% wynosi:\n\n')
-
-
-def zadanie_z_2_liczbami():
-    if random() > 0.5:
-        polecenie = 'iloczyn'
-    else:
-        polecenie = 'iloraz'
-    a = randint(3, 7) * 48
-    b = randint(3, 6) * 32
-    potega1 = randint(12, 16)
-    potega2 = randint(8, 11)
-
-    f.write(f'Dane są dwie liczby a = {a}*10^{potega1} i b = {b}*10^{potega2} {polecenie} tych liczb to?\n')
-    f.write(
-        f'A={a * b}*10^{potega1 + potega2 + 2} B={a * b / 10000}*10^{potega1 + potega2 + 4}  C={a / b * 10}*10^{potega1 - potega2 + 2} D={a / b}*10^{potega1 - potega2} \n\n')
+        , f.write(f'Towar kosztuje {randint(3, 15) * 30}zł jego cena po obniżce o {randint(1, 4) * 5}% wynosi:\n\n')
+        , f.write(f'Towar kosztuje {randint(3, 15) * 30}zł jego cena po podwyżce o {randint(1, 4) * 5}% wynosi:\n\n')
+        , f.write(f'liczba {randint(1, 5) * 10} to ile procent liczby {randint(2, 5) * 100} ?\n\n')
+    ])
 
 
 def ilosc_rozwiazan():
@@ -161,3 +142,54 @@ def liniowa():
         f.write(
             f'Dla jakiej wartości parametru m punkt M({x1},{y1}-m) należy do wykresu funkcji liniowej y={x2}x{choice(["-", "+"])}{wyraz_wolny}\n'
             f'A. m= {-y1 + x2 * x1 - wyraz_wolny} B. m= {-y1 - x2 * x1 + wyraz_wolny} C. m= {-y1 - x2 * x1 - wyraz_wolny} D. m= {y1 - x2 * x1 - wyraz_wolny} \n\n')
+
+
+def rozne():
+    #zaokraglanie liczb
+    q = round(random() * 1000, 4)
+    miejsce = choice(['setek', 'dziesiątek', 'jedności', 'części dziesiątych', 'części setnych', 'części tysięcznych'])
+
+    #zadanie z 2 liczbami
+    if random() > 0.5:
+        polecenie = 'iloczyn'
+    else:
+        polecenie = 'iloraz'
+    a = randint(3, 7) * 48
+    b = randint(3, 6) * 32
+    potega1 = randint(12, 16)
+    potega2 = randint(8, 11)
+    #średnia lub mediana
+    ile_liczb = randint(3,6)
+    liczby=[]
+    mediana_czy_srednia = choice(['medianę','średnią'])
+    for liczba in range(ile_liczb):
+        liczby.append(randint(-4,5))
+    #podzielnosc
+    ilu_cyfrowa = randint(2,5)
+    podzielnosc_przez = choice([2,5,10])
+    #ile liczb z danych cyfr
+    ile_cyfr = randint (2,4)
+    jakie_cyfry=[]
+    while len(jakie_cyfry)!=ile_cyfr:
+        jaka_cyfra=randint(0,9)
+        if jaka_cyfra not in jakie_cyfry:
+            jakie_cyfry.append(jaka_cyfra)
+
+
+    print(jakie_cyfry)
+
+    f.write(choice([
+        f'Dane są dwie liczby a = {a}*10^{potega1} i b = {b}*10^{potega2} {polecenie} tych liczb to?\n'
+        f'A={a * b}*10^{potega1 + potega2 + 2} B={a * b / 10000}*10^{potega1 + potega2 + 4}  C={a / b * 10}*10^{potega1 - potega2 + 2} D={a / b}*10^{potega1 - potega2} \n\n'
+        ,
+        f'Zaokrąglenie liczby {q} do {miejsce} to :'
+        ,
+        f'Oblicz {mediana_czy_srednia} zestawu liczb: {liczby} . '
+        ,
+        f'Ile jest liczb {ilu_cyfrowa} cyfrowych podzielnych przez {podzielnosc_przez}'
+        ,
+        f'Wszystkich lizcb {ilu_cyfrowa} cyfrowych w których występują tylko {jakie_cyfry} jest?'
+
+
+
+    ]))
