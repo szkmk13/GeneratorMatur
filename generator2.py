@@ -38,18 +38,11 @@ def wypisanie_liczb():
         f"3. Narysuj wykres funkcji f(x)=|{randint(2, 5)}-|x{choice(['+', '-'])}{randint(2, 5)}|| i podaj jej zbiór wartości\n\n")
 
 
-class Counter:
-    count = 0
-
-    def __init__(self):
-        self.count += 1
-        print(self.count)
-
 
 count = 0
 
 
-def Counter(function):
+def counter(function):
     globals()['count'] += 1
     print(count, end='. ')
     function()
@@ -71,9 +64,9 @@ while True:
         if cotam == 1:
             ułamki.dodawanie_ulamkow()
         elif cotam == 2:
-            Counter(wypisanie_liczb)
-            Counter(wypisanie_liczb)
-            Counter(wypisanie_liczb)
+            counter(wypisanie_liczb)
+            counter(wypisanie_liczb)
+            counter(wypisanie_liczb)
         elif cotam == 3:
             # f.write('Zadania otwarte:\n')
             matura.logarytm(choice([2, 3, 5]))
@@ -97,8 +90,8 @@ while True:
 
         elif cotam == 4:
             for i in range(10):
-                matura.rozne()
-                matura.procenty()
+                matura.kwadratowa()
+
         elif cotam == 0:
             f.close()
             break

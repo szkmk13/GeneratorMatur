@@ -29,7 +29,7 @@ def kwadratowa():
 def liniowa():
     znak = choice(['\u003c', '\u003e', '\u2264', '\u2265'])
     wersja = choice([1, 2])
-
+    nierownosc = ''
     while True:
         q = randint(-6, 6)
         w = randint(-6, 6)
@@ -49,7 +49,7 @@ def liniowa():
 def z_wartoscia_bezwzledna():
     znak = choice(['\u003c', '\u003e', '\u2264', '\u2265'])
     wersja = choice([1, 2, 3])
-
+    nierownosc = ''
     while True:
         q = randint(-6, 6)
         w = randint(-6, 6)
