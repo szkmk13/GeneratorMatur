@@ -2,44 +2,71 @@ from random import choice, randint, random
 import ułamki
 
 f = open("zadania.doc", 'a+', encoding="utf-8")
-
+def number_to_substract(number):
+    number = str(number)
+    subscript = ''
+    for character in number:
+        if character == '.':
+            subscript += '\u0323 '
+        if character == "0":
+            subscript += '\u2080'
+        if character == "1":
+            subscript += '\u2081'
+        if character == "2":
+            subscript += '\u2082'
+        if character == "3":
+            subscript += '\u2083'
+        if character == "4":
+            subscript += '\u2084'
+        if character == "5":
+            subscript += '\u2085'
+        if character == "6":
+            subscript += '\u2086'
+        if character == "7":
+            subscript += '\u2087'
+        if character == "8":
+            subscript += '\u2088'
+        if character == "9":
+            subscript += '\u2089'
+    return subscript
 
 def logarytm(podstawa):
-    pods = 1
-    liczbalog = 1
-    potega1 = ''
-    pierwiastek = ''
+    if random()>0.4:
+        pods = 1
+        liczbalog = 1
+        potega1 = ''
+        pierwiastek = ''
 
-    while pods == liczbalog:
-        if podstawa == 2:
-            pods = choice([4, 8, 0.5, 0.25, 0.125, 32, 64, 128])
-            liczbalog = choice([4, 8, 0.5, 0.25, 0.125, 32, 64, 128])
-        elif podstawa == 3:
-            pods = choice([9, 27, 81, 243])
-            liczbalog = choice([9, 27, 81, 243])
-        elif podstawa == 5:
-            pods = choice([0.2, 0.04, 5, 25, 125, 625])
-            liczbalog = choice([0.2, 0.04, 5, 25, 125, 625])
-    while potega1 == pierwiastek or (potega1 == '\u00b2' and pierwiastek == '\u221A') or (
-            potega1 == '\u00b3' and pierwiastek == '\u221B') or (potega1 == '\u2074' and pierwiastek == '\u221C'):
-        potega1 = choice(['', '\u00b2', '\u00b3', '\u2074'])
-        pierwiastek = choice(['', '\u221A', '\u221B', '\u221C'])
+        while pods == liczbalog:
+            if podstawa == 2:
+                pods = choice([4, 8, 0.5, 0.25, 0.125, 32, 64, 128])
+                liczbalog = choice([4, 8, 0.5, 0.25, 0.125, 32, 64, 128])
+            elif podstawa == 3:
+                pods = choice([9, 27, 81, 243])
+                liczbalog = choice([9, 27, 81, 243])
+            elif podstawa == 5:
+                pods = choice([0.2, 0.04, 5, 25, 125, 625])
+                liczbalog = choice([0.2, 0.04, 5, 25, 125, 625])
+        while potega1 == pierwiastek or (potega1 == '\u00b2' and pierwiastek == '\u221A') or (
+                potega1 == '\u00b3' and pierwiastek == '\u221B') or (potega1 == '\u2074' and pierwiastek == '\u221C'):
+            potega1 = choice(['', '\u00b2', '\u00b3', '\u2074'])
+            pierwiastek = choice(['', '\u221A', '\u221B', '\u221C'])
+            f.write( f'Wartość wyrażenia: log{number_to_substract(pods)} {pierwiastek}{liczbalog}{potega1} jest równa?\n\n')
+    else:
+        liczba_log1 = 1
+        liczba_log2 = 1
+        liczba_log3 = 1
+        wynik = [podstawa, podstawa ** 2, podstawa ** 3, podstawa ** 4, podstawa ** 5]
+        while liczba_log1 * liczba_log2 not in wynik or liczba_log1 in wynik or liczba_log2 in wynik:
+            liczba_log1 = choice([2, 4, 5, 8, 10]) * choice([1, 2, 4, 5, 8, 10])
+            liczba_log2 = choice(wynik) * podstawa / liczba_log1
+            liczba_log3 = choice(wynik) * podstawa * liczba_log1
 
-    liczba_log1 = 1
-    liczba_log2 = 1
-    liczba_log3 = 1
-    wynik = [podstawa, podstawa ** 2, podstawa ** 3, podstawa ** 4, podstawa ** 5, podstawa ** 6, podstawa ** 7]
-    while liczba_log1 * liczba_log2 not in wynik or liczba_log1 in wynik or liczba_log2 in wynik:
-        liczba_log1 = choice([2, 4, 5, 8, 10]) * choice([1, 2, 4, 5, 8, 10])
-        liczba_log2 = podstawa / liczba_log1
-        liczba_log3 = podstawa * liczba_log1
-
-    f.write(choice([
-        f'Wartość wyrażenia: log{pods} {pierwiastek}{liczbalog}{potega1} jest równa?',
-        f'log{podstawa} {liczba_log1} + log{podstawa} {liczba_log2} =',
-        f'log{podstawa} {liczba_log3} - log{podstawa} {liczba_log1} ='
-    ]))
-    f.write(f'\n\n')
+        f.write(choice([
+            f'log{number_to_substract(podstawa)} {liczba_log1} + log{number_to_substract(podstawa)} {liczba_log2} =',
+            f'log{number_to_substract(podstawa)} {liczba_log3} - log{number_to_substract(podstawa)} {liczba_log1} ='
+        ]))
+        f.write(f'\n\n')
 
 
 def pierwiastki():
@@ -190,7 +217,8 @@ def kwadratowa():
         f'Podaj zbiór wartości funkcji f(x)={wzor_funkcji}',
         f'Dla jakiej wartości parametru m punkt A=({randint(-5,5)},{randint(1,5)}-m) należy do wyrkesu funkcji f(x)={wzor_funkcji}',
         f'Podaj wzór funkcji f(x)={wzor_funkcji} w postaci iloczynowej',
-        f'Podaj wzór funkcji f(x)={wzor_funkcji} w postaci kanonicznej'
+        f'Podaj wzór funkcji f(x)={wzor_funkcji} w postaci kanonicznej',
+        f'Oblicz współrzędne wierzchołka paraboli określonej wzorem f(x)={wzor_funkcji}'
 
 
     ]))
@@ -240,7 +268,7 @@ def rozne():
         ,
         f'Ile jest liczb {ilu_cyfrowa} cyfrowych podzielnych przez {podzielnosc_przez}'
         ,
-        f'Wszystkich lizcb {ilu_cyfrowa} cyfrowych w których występują tylko {jakie_cyfry} jest?'
+        f'Wszystkich liczb {ilu_cyfrowa} cyfrowych w których występują tylko {jakie_cyfry} jest?'
 
     ]))
     f.write('\n\n')

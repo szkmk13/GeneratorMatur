@@ -8,42 +8,22 @@ import planimetria
 
 
 
+
+
 def upraszczanie_wyrazen():
     print(f'x -3x +8x -x = ')
 
 
-def wypisanie_liczb():
+def test_funkcja():
     print(f"losowa liczba to: {randint(2, 93)}")
-    ux = 0
-    uy = 0
-    a = 0
-    while ux == 0 or uy == 0 or a == 0:
-        ux = randint(-4, 4)
-        uy = randint(-4, 4)
-        a = randint(-4, 4)
-
-    symetria = choice(['osi OY', 'osi OX', 'początku układu współrzędnych'])
-
-    f.write(f'1. napisz wzory funkcji których wykresy otrzymamy jeżeli:\n')
-    f.write(f"a) wykres funkcji {choice(['', '-'])}{randint(2, 4)}/x przesuniemy o wektor u= [{ux},{uy}]")
-    f.write(f' a następnie przekształcimy przez symetrię względem {symetria}\n\n')
-    symetria = choice(['osi OY', 'osi OX', 'początku układu współrzędnych'])
-    f.write(
-        f'b) wykres fukncji f(x)= {a}x\u00b2{choice(["+", "-"])}{randint(2, 5)}x przekształcimy przez symetrię względem {symetria}\n\n ')
-    f.write(
-        f"2a. Narysuj wykres funkcji f(x)= -(|x|{randint(1, 4)})\u00b2. Wyznacz miejsca zerowe oraz podaj jej przedziały monotoniczności.\n\n")
-    f.write(
-        f"2b. Narysuj wykres funkcji f(x)= (|x|{choice(['+', '-'])}{randint(1, 4)})\u00b2 - {randint(1, 4)}. Wyznacz miejsca zerowe oraz podaj jej przedziały monotoniczności.\n\n")
-    f.write(
-        f"3. Narysuj wykres funkcji f(x)=|{randint(2, 5)}-|x{choice(['+', '-'])}{randint(2, 5)}|| i podaj jej zbiór wartości\n\n")
-
 
 
 count = 0
 
 
-def counter(function):
-    globals()['count'] += 1
+def counter(function):  # counter(nazwafunkcji)
+    global count
+    count += 1
     print(count, end='. ')
     function()
 
@@ -51,6 +31,7 @@ def counter(function):
 f = open("zadania.doc", 'w', encoding="utf-8")
 
 while True:
+
     print("""
     1. Dodawanie ułamków (pełne strony)
     2. Funkcja
@@ -64,9 +45,15 @@ while True:
         if cotam == 1:
             ułamki.dodawanie_ulamkow()
         elif cotam == 2:
-            counter(wypisanie_liczb)
-            counter(wypisanie_liczb)
-            counter(wypisanie_liczb)
+            matura.pierwiastki()
+            matura.usuwanie_niewymiernosci()
+            matura.procenty()
+            matura.rozne()
+            matura.rozne()
+            nierownosc.liniowa()
+            matura.logarytm(2)
+            matura.logarytm(3)
+            matura.logarytm(5)
         elif cotam == 3:
             # f.write('Zadania otwarte:\n')
             matura.logarytm(choice([2, 3, 5]))
@@ -89,8 +76,13 @@ while True:
 
 
         elif cotam == 4:
-            for i in range(10):
-                matura.kwadratowa()
+            for i in range(15):
+                # matura.procenty()
+                # matura.pierwiastki()
+                # matura.usuwanie_niewymiernosci()
+                matura.logarytm(choice([2, 3, 5]))
+                matura.logarytm(choice([2, 3, 5]))
+
 
         elif cotam == 0:
             f.close()
