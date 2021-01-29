@@ -92,7 +92,7 @@ def arytmetyczny_zamkniete():
 def geometryczny_zamkniete():
     a1 = 0
     q = 0
-    n = (randint(4, 6))
+    n = (randint(3, 5))
 
     while a1 == 0 or a1 == 1 or a1 == -1 or suma_n_wyrazow_geometryczny(a1, q, n) % 1 != 0:
         a1 = randint(-6, 6)
@@ -106,7 +106,7 @@ def geometryczny_zamkniete():
         f'Dany jest ciąg geometryczny którego {slownie(wyraz)} to {awyraz} i a1 = {a1}. Oblicz iloczn tego ciągu',
         f'W ciągu geometrycznym {slownie(wyraz)} to {awyraz} a {slownie(wyraz2)} jest równy {awyraz2} oblicz iloczyn tego ciągu',
         f'W ciągu geometrycznym {slownie(wyraz)} to {awyraz} a {slownie(wyraz2)} jest równy {awyraz2} oblicz pierwszy wyraz tego ciągu',
-        f'{suma_n_wyrazow_geometryczny(a1, q, n)} to suma pierwszych {n} wyrazów ciągu geometrycznego w którym a1={a1} oblicz iloczyn tego ciągu',
+        f'{suma_n_wyrazow_geometryczny(a1, q, n)} to suma pierwszych {n} wyrazów ciągu geometrycznego w którym q={q} oblicz pierwszy wyraz tego ciągu',
         f'Ciąg geometryczny, którego wszystkie wyrazy są dodatnie i  {slownie(wyraz)} to {awyraz} , a {slownie(wyraz + 2)} jest równy {awyraz * q * q} ma iloczyn równy \n'
         f'A. {-q} B. {wyraz} C. {q} D. {a1}',
 

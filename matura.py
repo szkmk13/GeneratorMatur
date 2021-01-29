@@ -1,7 +1,10 @@
 from random import choice, randint, random
 import ułamki
+import cartesian_plane
 
 f = open("zadania.doc", 'a+', encoding="utf-8")
+
+
 def number_to_substract(number):
     number = str(number)
     subscript = ''
@@ -30,8 +33,9 @@ def number_to_substract(number):
             subscript += '\u2089'
     return subscript
 
+
 def logarytm(podstawa):
-    if random()>0.4:
+    if random() > 0.4:
         pods = 1
         liczbalog = 1
         potega1 = ''
@@ -51,7 +55,8 @@ def logarytm(podstawa):
                 potega1 == '\u00b3' and pierwiastek == '\u221B') or (potega1 == '\u2074' and pierwiastek == '\u221C'):
             potega1 = choice(['', '\u00b2', '\u00b3', '\u2074'])
             pierwiastek = choice(['', '\u221A', '\u221B', '\u221C'])
-            f.write( f'Wartość wyrażenia: log{number_to_substract(pods)} {pierwiastek}{liczbalog}{potega1} jest równa?\n\n')
+            f.write(
+                f'Wartość wyrażenia: log{number_to_substract(pods)} {pierwiastek}{liczbalog}{potega1} jest równa?\n\n')
     else:
         liczba_log1 = 1
         liczba_log2 = 1
@@ -70,7 +75,7 @@ def logarytm(podstawa):
 
 
 def pierwiastki():
-    ile_pierwiastkow = 5
+    ile_pierwiastkow = 4
     pierwiastki = []
     znaki = []
     for i in range(ile_pierwiastkow):
@@ -92,15 +97,13 @@ def pierwiastki():
 def usuwanie_niewymiernosci():
     a = randint(2, 6)
     pierw = choice([2, 3, 5])
+    if random() > 0.5:
+        a = a * -1
     if random() > 0.6:
-        if random() > 0.5:
-            a = a * -1
         f.write(f'{a}{choice(["+", "-"])}{randint(2, 6)}\u221A{pierw} \n')
         f.write("------ =\n")
         f.write(f'  \u221A{pierw}\n\n')
     else:
-        if random() > 0.5:
-            a = a * -1
         f.write(f'{a}{choice(["+", "-"])}{randint(2, 6)}\u221A{pierw} \n')
         f.write("------ =\n")
         f.write(f' {randint(2, 6)}{choice(["+", "-"])}\u221A{pierw} \n\n')
@@ -108,18 +111,37 @@ def usuwanie_niewymiernosci():
 
 def procenty():
     f.write(choice([
-        f'Cena towaru po obniżce o {randint(1, 5) * 5}% wynosi {randint(2, 12) * 252}zł. Cena przed rabatem to?\n\n'
+        f'Cena towaru po obniżce o {randint(1, 5) * 5}% wynosi {randint(2, 12) * 252}zł. Cena przed rabatem to?'
         ,
-        f'Cena towaru po podwyżce o {randint(1, 3) * 20}% wynosi {randint(2, 12) * 336}zł. Cena przed podwyżką to?\n\n'
+        f'Cena towaru po podwyżce o {randint(1, 3) * 20}% wynosi {randint(2, 12) * 336}zł. Cena przed podwyżką to?'
         ,
-        f'Cena zmniejszono o {randint(1, 3) * 25}%. O ile % trzeba zwiększyć cenę aby wrócić do ceny początkowej?\n\n'
+        f'Cena zmniejszono o {randint(1, 3) * 25}%. O ile % trzeba zwiększyć cenę aby wrócić do ceny początkowej?'
         ,
-        f'Towar kosztuje {randint(3, 15) * 30}zł jego cena po obniżce o {randint(1, 4) * 5}% wynosi:\n\n'
+        f'Towar kosztuje {randint(3, 15) * 30}zł jego cena po obniżce o {randint(1, 4) * 5}% wynosi:'
         ,
-        f'Towar kosztuje {randint(3, 15) * 30}zł jego cena po podwyżce o {randint(1, 4) * 5}% wynosi:\n\n'
+        f'Towar kosztuje {randint(3, 15) * 30}zł jego cena po podwyżce o {randint(1, 4) * 5}% wynosi:'
         ,
-        f'liczba {randint(1, 5) * 10} to ile procent liczby {randint(2, 5) * 100} ?\n\n'
+        f'liczba {randint(1, 5) * 10} to ile procent liczby {randint(2, 5) * 100} ?'
     ]))
+    f.write("\n\n")
+
+
+def potegi():
+    dzialania = ["*", "*", "*"]
+    miejsce_dzielenia = randint(0,len(dzialania))
+    dzialania[miejsce_dzielenia]= ":"
+    podstawa = randint(2, 11)
+    print(dzialania)
+    for potega in range(len(dzialania)+1):
+        print(potega)
+
+
+
+    for dzialanie in dzialania:
+        print(f'{2} + {dzialanie}')
+
+
+    return
 
 
 def ilosc_rozwiazan():
@@ -129,7 +151,7 @@ def ilosc_rozwiazan():
     while len(nawiasy) < ile_nawiasow_w_liczniku:
         nawiasy.append(randint(1, 4))
     ile = len(nawiasy)
-    f.write('Ile rozwiązań ma poniższe równanie:\n')
+    f.write(f'Ile {choice(["rozwiązań", "pierwiastków"])} ma poniższe równanie:\n')
     while i < ile:
         f.write(f'(x{choice(["-", "+"])}{nawiasy[i]})')
         i += 1
@@ -147,7 +169,7 @@ def ilosc_rozwiazan():
     f.write("\nA. 1  B. 2  C. 3  D. 4\n\n")
 
 
-def liniowa():
+def liniowa_abcd():
     x1 = 0
     x2 = 0
     x3 = 0
@@ -157,7 +179,7 @@ def liniowa():
     a1 = 1
     wyraz_wolny = 1
     rowno_czy_prosto = choice(['równoległej', 'prostopadłej'])
-    while x1 == 0 or x2 == 0 or y1 == 0 or y2 == 0 or x3 == 0 or y3 == 0:
+    while x1 == 0 or x2 == 0 or y1 == 0 or y2 == 0 or x3 == 0 or y3 == 0 or y1 == y3:
         x1 = randint(-6, 6)
         x2 = randint(-6, 6)
         x3 = randint(-6, 6)
@@ -174,19 +196,30 @@ def liniowa():
         f'Miejscem zerowym funkcji określonej wzorem f(x)={randint(2, 4)}(x{choice(["+", "-"])}{randint(1, 8)}){choice(["+", "-"])}\u221A{randint(2, 3)} jest?'
         ,
         f'Punkt A=({x1},{y1}) należy do funkcji określonej wzorem f(x)={x2}x+b . Stąd wynika że b=\n'
+        f'A. {ułamki.skracanie(-1 * x1 * y1, x2)} B. {y1 + x2 * x1} C. {ułamki.skracanie(x2 * y1, x1)} D. {y1 - x2 * x1}'
         ,
-        f'A. {ułamki.skracanie(-1 * x1 * y1, x2)} B. {y1 - x2 * x1} C. {ułamki.skracanie(x2 * y1, x1)} D. {y1 - x2 * x1}'
-        ,
-        f'Dla jakiego m podane punkty są współliniowe? A({x1},{y1}) B({x2}-m,{y2}) C({x3},{y3})'
+        f'Dla jakiego m podane punkty są współliniowe? A({x1},{y1}) B({x2}-{randint(2, 4)}m,{y2}) C({x3},{y3})'
         ,
         f'Wyznacz równanie prostej przechodzącej przez punkt E({x1},{y1}) i {rowno_czy_prosto} do prostej y={a1}x+{wyraz_wolny}\n'
         f'A. y={a1}x+{-1 * (x1 * a1 - y1)}  B. y={a1}x+{x1 * a1 - y1}  C. y={ułamki.skracanie(-1, a1)}x+{ułamki.skracanie(y1 * a1 + x1, a1)}  D. y={ułamki.skracanie(-1, a1)}x+{ułamki.skracanie(y1 * a1 - x1, a1)}  '
         ,
-        f'Dla jakiej wartości parametru m punkt M({x1},{y1}-m) należy do wykresu funkcji liniowej y={x2}x{choice(["-", "+"])}{wyraz_wolny}\n'
-        f'A. m= {-y1 + x2 * x1 - wyraz_wolny} B. m= {-y1 - x2 * x1 + wyraz_wolny} C. m= {-y1 - x2 * x1 - wyraz_wolny} D. m= {y1 - x2 * x1 - wyraz_wolny} '
+        f'Dla jakiej wartości parametru m punkt M({x1},{y1}-m) należy do wykresu funkcji liniowej y={x2}x{choice(["+" + str(wyraz_wolny), "-" + str(wyraz_wolny)])}\n'
+        f'A. m= {y1 + x2 * x1 - wyraz_wolny} B. m= {y1 - x2 * x1 + wyraz_wolny} C. m= {y1 - x2 * x1 - wyraz_wolny} D. m= {y1 + x2 * x1 + wyraz_wolny} '
+        ,
+        f'Dla jakiej wartości parametru m funkcja liniowa y=({a1}{choice(["+", "-"])}{wyraz_wolny}m)x+{x1} jest {choice(["rosnąca", "malejąca"])}?\n'
+        f'A. m>{ułamki.skracanie(a1, -1 * wyraz_wolny)} B. m>{ułamki.skracanie(a1, wyraz_wolny)}  C. m<{ułamki.skracanie(a1, wyraz_wolny)}  D. m<{ułamki.skracanie(a1, -1 * wyraz_wolny)} '
+        ,
+        f'Prosta przechodzi przez punkt A({x1},{x2}) oraz przez punkt D({y1},{y2}) jej {choice(["współczynnik kierunkowy", "wyraz wolny"])} wynosi?\n'
+        ,
+        f'Proste o równaniach {x1}x+{y1}'
 
     ]))
     f.write('\n\n')
+
+
+def liniowa_obrazek():
+    f.write(f'{choice(["współczynnik kierunkowy", "wyraz wolny"])} pokazanej na rysunku wynosi:')
+    cartesian_plane.linear_function()
 
 
 def kwadratowa():
@@ -212,19 +245,16 @@ def kwadratowa():
     print(wzor_funkcji)
 
     f.write(choice([
-        f'Jaką wartość ma funkcja f(x)={wzor_funkcji} dla argumentu równego {randint(-5,5)} ?',
+        f'Jaką wartość ma funkcja f(x)={wzor_funkcji} dla argumentu równego {randint(-5, 5)} ?',
         f'Określ monotoniczność funkcji f(x)={wzor_funkcji}',
         f'Podaj zbiór wartości funkcji f(x)={wzor_funkcji}',
-        f'Dla jakiej wartości parametru m punkt A=({randint(-5,5)},{randint(1,5)}-m) należy do wyrkesu funkcji f(x)={wzor_funkcji}',
+        f'Dla jakiej wartości parametru m punkt A=({randint(-5, 5)},{randint(1, 5)}-m) należy do wyrkesu funkcji f(x)={wzor_funkcji}',
         f'Podaj wzór funkcji f(x)={wzor_funkcji} w postaci iloczynowej',
         f'Podaj wzór funkcji f(x)={wzor_funkcji} w postaci kanonicznej',
         f'Oblicz współrzędne wierzchołka paraboli określonej wzorem f(x)={wzor_funkcji}'
 
-
     ]))
     f.write('\n\n')
-
-
 
 
 def rozne():
@@ -272,3 +302,24 @@ def rozne():
 
     ]))
     f.write('\n\n')
+
+
+def liniowa_otwarte():
+    # a1, a2, a3, b1, b2, b3 = 0
+    a1 = 0
+    a2 = 0
+    a3 = 0
+
+
+# print(a1,a2,a3,b1,b2,b3)
+
+
+def arkusz():
+    logarytm(choice([2, 3, 5]))
+    pierwiastki()
+    usuwanie_niewymiernosci()
+    ilosc_rozwiazan()
+    liniowa_abcd()
+    liniowa_abcd()
+    kwadratowa()
+    kwadratowa()

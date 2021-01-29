@@ -6,7 +6,7 @@ import nierownosc
 import ułamki
 import planimetria
 
-
+f = open("zadania.doc", 'w', encoding="utf-8")
 
 
 
@@ -15,8 +15,27 @@ def upraszczanie_wyrazen():
 
 
 def test_funkcja():
-    print(f"losowa liczba to: {randint(2, 93)}")
+    while True:
+        a = randint(-15, 15)
+        b = randint(-115, 115)
+        c = randint(-115, 115)
+        delta = b * b - 4 * a * c
+        if (delta in [0, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225]) and (a == 1) and b != 0 and c!= 0:
+            break
 
+    wzor_funkcji = f' x\u00b2'
+    if b != 0:
+        if b > 0:
+            wzor_funkcji += f'+{b}x'
+        else:
+            wzor_funkcji += f'{b}x'
+    if c != 0:
+        if c > 0:
+            wzor_funkcji += f'+{c}'
+        else:
+            wzor_funkcji += f'{c}'
+    f.write(wzor_funkcji)
+    f.write("\n")
 
 count = 0
 
@@ -28,8 +47,8 @@ def counter(function):  # counter(nazwafunkcji)
     function()
 
 
-f = open("zadania.doc", 'w', encoding="utf-8")
 
+matura.potegi()
 while True:
 
     print("""
@@ -63,8 +82,8 @@ while True:
             matura.procenty()
             matura.rozne()
             matura.ilosc_rozwiazan()
-            matura.liniowa()
-            matura.liniowa()
+            matura.liniowa_abcd()
+            matura.liniowa_abcd()
             nierownosc.kwadratowa()
             ciag.arytmetyczny_zamkniete()
             ciag.geometryczny_zamkniete()
@@ -76,12 +95,24 @@ while True:
 
 
         elif cotam == 4:
-            for i in range(15):
+            for i in range(25):
                 # matura.procenty()
-                # matura.pierwiastki()
+                # matura.pierwiastki()4
+
                 # matura.usuwanie_niewymiernosci()
                 matura.logarytm(choice([2, 3, 5]))
-                matura.logarytm(choice([2, 3, 5]))
+
+                #matura.liniowa_obrazek()
+        elif cotam == 5:
+            for i in range(100):
+                matura.liniowa_otwarte()
+                matura.liniowa_abcd()
+                matura.pierwiastki()
+                matura.usuwanie_niewymiernosci()
+                matura.logarytm(2)
+                matura.logarytm(3)
+                matura.logarytm(5)
+
 
 
         elif cotam == 0:
