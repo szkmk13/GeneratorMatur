@@ -34,9 +34,15 @@ def czworokaty():
     a_czy_d = choice([a, d])
     bok_czy_przekatna = choice([f'bok jest równy ', f'przekątna ma długość '])
     f.write(choice([
-        f'Kwadrat którego {bok_czy_przekatna}{a_czy_d} ma pole równe ?',
+        f'Kwadrat którego {bok_czy_przekatna}{a_czy_d} ma pole równe ?'
+        ,
         f'Romb, w którym {choice(["bok", "wysokość"])} ma długość {a}, a kąt ostry {kat}°. Oblicz pole tego rombu.'
-
+        ,
+        f'Wiedząc że przekątne rombu mają długosci {a} oraz {b} oblicz {choice(["pole","długość boku"])} tego rombu'
+        ,
+        f'Wiedząc że dłuższa podstawa trapezu równoramiennego ma dugość {a*4} a krótsza jest dwa razy krótsza, oblicz jego pole'
+        ,
+        f'Prostokąt o bokach długości {a} oraz {b} ma {choice("pole równe","przekątną równą")} ?'
         ]))
     f.write("\n\n")
 

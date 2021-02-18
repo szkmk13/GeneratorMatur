@@ -128,18 +128,15 @@ def procenty():
 
 def potegi():
     dzialania = ["*", "*", "*"]
-    miejsce_dzielenia = randint(0,len(dzialania))
-    dzialania[miejsce_dzielenia]= ":"
+    miejsce_dzielenia = randint(0, len(dzialania))
+    dzialania[miejsce_dzielenia] = ":"
     podstawa = randint(2, 11)
     print(dzialania)
-    for potega in range(len(dzialania)+1):
+    for potega in range(len(dzialania) + 1):
         print(potega)
-
-
 
     for dzialanie in dzialania:
         print(f'{2} + {dzialanie}')
-
 
     return
 
@@ -169,6 +166,50 @@ def ilosc_rozwiazan():
     f.write("\nA. 1  B. 2  C. 3  D. 4\n\n")
 
 
+def wzory_sm():
+    wynik = []
+    for i in range(2):
+        wyrazenie = ''
+
+        liczby = str(randint(2, 6))
+        literki = choice(['a', 'b', 'c', 'x', 'y'])
+        pierwiastki = "\u221A" + str(choice([2, 3, 5]))
+        xdxd = [liczby, literki, pierwiastki]
+        mainbranch = randint(0, 2)
+        inna = [pierwiastki, literki, '']
+        subbranch = randint(0, 2)
+        inna2 = [literki, '']
+        subbranch2 = randint(0, 1)
+
+        if mainbranch == 0:  # najepirw liczba potem inne rzeczy
+            wyrazenie += liczby
+            if subbranch == 0:
+                wyrazenie += pierwiastki
+                if subbranch2 == 0:
+                    wyrazenie += literki
+                    # print(" liczba piewiastek litera")
+
+
+            elif subbranch == 1:
+                wyrazenie += literki
+                # print(" liczba litera")
+
+        elif mainbranch == 1:  # napierw peirwiastek potem inne
+            wyrazenie += pierwiastki
+            if subbranch2 == 0:
+                wyrazenie += literki
+                # print(" piewiastek litera")
+
+        elif mainbranch == 2:
+            wyrazenie += literki
+            # print("litera")
+
+        # print(wyrazenie)
+        wynik.append(wyrazenie)
+
+    f.write(f'({wynik[0]}{choice(["+", "-"])}{wynik[1]})\u00b2 = \n\n')
+
+
 def liniowa_abcd():
     x1 = 0
     x2 = 0
@@ -193,6 +234,10 @@ def liniowa_abcd():
             a1 = randint(-5, -2)
 
     f.write(choice([
+        f'Miejscem zerowym funkcji określonej wzorem f(x)={randint(2, 4)}-(x{choice(["+", "-"])}{randint(1, 8)}){choice(["+", "-"])}*{randint(2, 3)} jest?'
+        ,
+        f'Miejscem zerowym funkcji określonej wzorem f(x)={randint(2, 4)}(x{choice(["+", "-"])}{randint(1, 8)}){choice(["+", "-"])}{randint(2, 8)} jest?'
+        ,
         f'Miejscem zerowym funkcji określonej wzorem f(x)={randint(2, 4)}(x{choice(["+", "-"])}{randint(1, 8)}){choice(["+", "-"])}\u221A{randint(2, 3)} jest?'
         ,
         f'Punkt A=({x1},{y1}) należy do funkcji określonej wzorem f(x)={x2}x+b . Stąd wynika że b=\n'
@@ -251,7 +296,10 @@ def kwadratowa():
         f'Dla jakiej wartości parametru m punkt A=({randint(-5, 5)},{randint(1, 5)}-m) należy do wyrkesu funkcji f(x)={wzor_funkcji}',
         f'Podaj wzór funkcji f(x)={wzor_funkcji} w postaci iloczynowej',
         f'Podaj wzór funkcji f(x)={wzor_funkcji} w postaci kanonicznej',
-        f'Oblicz współrzędne wierzchołka paraboli określonej wzorem f(x)={wzor_funkcji}'
+        f'Oblicz współrzędne wierzchołka paraboli określonej wzorem f(x)={wzor_funkcji}',
+        f'Funkcja o wzorze f(x)={wzor_funkcji} przecina oś OY w punkcie',
+        f'Oś symetrii funkcji f(x)={wzor_funkcji} to?',
+        f'Ile miejsc zerowych ma funkcja określona wzorem f(x)={wzor_funkcji}'
 
     ]))
     f.write('\n\n')
