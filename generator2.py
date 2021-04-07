@@ -7,20 +7,36 @@ import ułamki
 import planimetria
 
 f = open("zadania.doc", 'w', encoding="utf-8")
+count = 0
 
 
 def upraszczanie_wyrazen():
-    print(f'x -3x +8x -x = ')
+    liczby = []
+    for item in range(5):
+        if random() > 0.5:
+            x = randint(-8, 8)
+            if x > 0:
+                x = "+" + str(x)
+        else:
+            x = choice(["+", "-"]) + str(randint(2, 9)) + "x"
+        liczby.append(x)
+
+    f.write(f'{randint(-9, -3)}')
+    for a in range(len(liczby)):
+        f.write(f'{liczby[a]}')
+    f.write("=\n")
 
 
-def test_funkcja():
+
+
+def wzory_vieta():
     while True:
         a = randint(-15, 15)
         b = randint(-115, 115)
         c = randint(-115, 115)
         delta = b * b - 4 * a * c
         if (delta in [0, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225]) and (
-                a == 1) and b != 0 and c != 0:
+                a != 0) and b != 0 and c != 0:
             break
 
     wzor_funkcji = f' x\u00b2'
@@ -38,18 +54,13 @@ def test_funkcja():
     f.write("\n")
 
 
-count = 0
-
-
 def counter(function):  # counter(nazwafunkcji)
     global count
     count += 1
     print(count, end='. ')
     function()
 
-
-
-matura.wzory_sm()
+matura.potegi()
 while True:
 
     print("""
@@ -75,7 +86,10 @@ while True:
             matura.logarytm(3)
             matura.logarytm(5)
         elif cotam == 3:
+
             # f.write('Zadania otwarte:\n')
+            matura.wzory_sm()
+            matura.wzory_sm()
             matura.logarytm(choice([2, 3, 5]))
             # matura.pierwiastki()
             matura.usuwanie_niewymiernosci()
@@ -90,7 +104,6 @@ while True:
             ciag.arytmetyczny_zamkniete()
             ciag.geometryczny_zamkniete()
             nierownosc.liniowa()
-            nierownosc.z_wartoscia_bezwzledna()
             planimetria.trojkaty()
             planimetria.czworokaty()
             planimetria.rozne()
@@ -98,15 +111,20 @@ while True:
 
         elif cotam == 4:
             for i in range(25):
+                upraszczanie_wyrazen()
+                # nierownosc.kwadratowa()
+                # matura.wzory_sm()
+                # wzory_vieta()
+                # matura.kwadratowa()
                 # matura.procenty()
-                # matura.pierwiastki()4
-                matura.wzory_sm()
+                # matura.pierwiastki()
+                # matura.wzory_sm()
                 # matura.usuwanie_niewymiernosci()
                 # matura.logarytm(choice([2, 3, 5]))
-                # matura.liniowa_abcd()
-                # matura.liniowa_obrazek()
-                #ciag.arytmetyczny_zamkniete()
-                #ciag.geometryczny_zamkniete()
+                matura.liniowa_abcd()
+            # matura.liniowa_obrazek()
+            # ciag.arytmetyczny_zamkniete()
+            # ciag.geometryczny_zamkniete()
         elif cotam == 5:
             for i in range(100):
                 matura.liniowa_otwarte()

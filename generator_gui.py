@@ -2,8 +2,11 @@ from tkinter import *
 from tkinter import messagebox
 from random import random
 from time import sleep
-from matura import kwadratowa
+import webbrowser
 
+from PIL import ImageTk,Image
+
+my_img = Image("buty.png")
 
 def ask_print():
     response = messagebox.askokcancel("Printing", "Do you really want to print?")
@@ -46,14 +49,19 @@ def funkcja(i):
         i = 1
         funkcja(i)
     # kwadratowa()
-
+def openweb():
+    url="www.deezee.pl"
+    webbrowser.open(url)
+    return
 
 
 root = Tk()
-root.title("Generator matur")
-root.geometry("600x300")
+root.title("Dzień kobiet")
+root.geometry("800x600")
 
-buttons_display = LabelFrame(root, text="buziki", bg="red")
+obraz = Label(image=my_img)
+obraz.grid(row=0, column=5)
+buttons_display = LabelFrame(root, text="buziki", bg="red",font="50")
 buttons_display.grid(row=0, column=0, padx=50, pady=30)
 
 frame2 = LabelFrame(root, text="Podgląd")
@@ -63,7 +71,7 @@ frame2.grid(row=0, column=1,padx=4)
 print_button = Button(buttons_display, text="drukuj", command=ask_print, state=DISABLED)
 print_button.grid(row=7, column=0)
 
-guzik = Button(buttons_display, text="enter your name", command=lambda: funkcja(1))
+guzik = Button(buttons_display, text="enter your name", command=lambda: openweb() ) #funkcja(1)
 guzik.grid(row=1, column=0)
 
 guzik1 = Button(buttons_display, text="1")

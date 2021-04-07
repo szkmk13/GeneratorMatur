@@ -70,3 +70,4 @@ def skracanie(licznik, mianownik):
         ulamek = "-" + str(ulamek)
 
     return ulamek
+

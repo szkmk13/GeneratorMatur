@@ -34,6 +34,37 @@ def number_to_substract(number):
     return subscript
 
 
+def number_to_superscript(number):
+    number = str(number)
+    superscript = ''
+    for character in number:
+        if character == '.':
+            superscript += '\u0307 '
+        if character == "0":
+            superscript += '\u2070'
+        if character == "1":
+            superscript += '\u00b9'
+        if character == "2":
+            superscript += '\u00b2'
+        if character == "3":
+            superscript += '\u00b3'
+        if character == "4":
+            superscript += '\u2074'
+        if character == "5":
+            superscript += '\u2075'
+        if character == "6":
+            superscript += '\u2076'
+        if character == "7":
+            superscript += '\u2077'
+        if character == "8":
+            superscript += '\u2078'
+        if character == "9":
+            superscript += '\u2079'
+        if character == "-":
+            superscript += '\u207B'
+    return superscript
+
+
 def logarytm(podstawa):
     if random() > 0.4:
         pods = 1
@@ -127,16 +158,39 @@ def procenty():
 
 
 def potegi():
-    dzialania = ["*", "*", "*"]
-    miejsce_dzielenia = randint(0, len(dzialania))
-    dzialania[miejsce_dzielenia] = ":"
-    podstawa = randint(2, 11)
-    print(dzialania)
-    for potega in range(len(dzialania) + 1):
-        print(potega)
+    liczba_potegowana = randint(2, 11)
+    dzialania = []
+    for a in range(4):
+        a = choice(["*", ":"])
+        dzialania.append(a)
+    miejsce_kreski = randint(0, len(dzialania) - 1)  # ( 0 , 3 )
+    dzialania[miejsce_kreski] = "-"
+    podstawy = [1, 0, 1, 0, 1, 0, 1, 0, 1]
+    k = 0
+    for n, liczba in enumerate(podstawy):
+        if liczba == 0:
+            podstawy[n] = dzialania[k]
+            k += 1
+        elif liczba == 1:
+            podstawy[n] = choice([-4, -3, -2, -1, -0.5, -1.5, -2.5, 2, 3, 4, 5, 2, 5, 0.5, 1.5])
+    for a, potega in enumerate(podstawy):
+        if potega == "*":
+            f.write(" * ")
+        elif potega == ":":
+            f.write(" : ")
+        elif potega == "-":
+            f.write("\n")
+            if a > 3:
+                f.write("---" * a)
+                f.write(" =\n")
+            else:
+                f.write("---" * (len(podstawy) - a))
+                f.write(" =\n")
+        else:
+            f.write(str(liczba_potegowana))
+            f.write(str(number_to_superscript(potega)))
+    f.write("\n\n")
 
-    for dzialanie in dzialania:
-        print(f'{2} + {dzialanie}')
 
     return
 
@@ -146,11 +200,15 @@ def ilosc_rozwiazan():
     ile_nawiasow_w_liczniku = randint(2, 4)
     nawiasy = []
     while len(nawiasy) < ile_nawiasow_w_liczniku:
-        nawiasy.append(randint(1, 4))
+        nawiasy.append(randint(1, 9))
     ile = len(nawiasy)
-    f.write(f'Ile {choice(["rozwiązań", "pierwiastków"])} ma poniższe równanie:\n')
+    f.write(
+        f'{choice(["Ilość", "Suma", "Iloczyn"])} {choice(["rozwiązań", "pierwiastków", "miejsc zerowych"])} poniższego równania to:\n')
     while i < ile:
-        f.write(f'(x{choice(["-", "+"])}{nawiasy[i]})')
+        if random() > 0.5:
+            f.write(f'(x{choice(["-", "+"])}{nawiasy[i]})\u00b2')
+        else:
+            f.write(f'(x{choice(["-", "+"])}{nawiasy[i]})')
         i += 1
     f.write("\n")
     while i < 2 * ile:
@@ -163,7 +221,7 @@ def ilosc_rozwiazan():
     while i < 3 * ile - 1:
         f.write(f' (x{choice(["-", "+"])}{nawiasy[i - ile * 2]}) ')
         i += 1
-    f.write("\nA. 1  B. 2  C. 3  D. 4\n\n")
+    f.write("\n")
 
 
 def wzory_sm():
@@ -171,25 +229,20 @@ def wzory_sm():
     for i in range(2):
         wyrazenie = ''
 
-        liczby = str(randint(2, 6))
-        literki = choice(['a', 'b', 'c', 'x', 'y'])
-        pierwiastki = "\u221A" + str(choice([2, 3, 5]))
-        xdxd = [liczby, literki, pierwiastki]
+        liczby = str(randint(1, 7))
+        literki = choice(['a', 'b', 'c', 'd', 'e', 'x', 'y', 'z'])
+        pierwiastki = "\u221A" + str(choice([2, 3, 5, 6, 8, 12, 18, 24]))
         mainbranch = randint(0, 2)
-        inna = [pierwiastki, literki, '']
         subbranch = randint(0, 2)
-        inna2 = [literki, '']
         subbranch2 = randint(0, 1)
 
-        if mainbranch == 0:  # najepirw liczba potem inne rzeczy
+        if mainbranch == 0:  # najpierw liczba potem inne rzeczy
             wyrazenie += liczby
             if subbranch == 0:
                 wyrazenie += pierwiastki
                 if subbranch2 == 0:
                     wyrazenie += literki
                     # print(" liczba piewiastek litera")
-
-
             elif subbranch == 1:
                 wyrazenie += literki
                 # print(" liczba litera")
@@ -211,52 +264,46 @@ def wzory_sm():
 
 
 def liniowa_abcd():
-    x1 = 0
-    x2 = 0
-    x3 = 0
-    y1 = 0
-    y2 = 0
-    y3 = 0
-    a1 = 1
-    wyraz_wolny = 1
+    def zmiana(x):
+        if x > 0:
+            x = "+" + str(x)
+        elif x < 0:
+            x = str(x)
+        return x
+
+    liczby = []
+    for item in range(10):
+        x = randint(-8, 8)
+        while x == 0 or x in liczby:
+            x = randint(-8, 8)
+        liczby.append(x)
+    liczby_plus_minus = list(map(zmiana, liczby))
     rowno_czy_prosto = choice(['równoległej', 'prostopadłej'])
-    while x1 == 0 or x2 == 0 or y1 == 0 or y2 == 0 or x3 == 0 or y3 == 0 or y1 == y3:
-        x1 = randint(-6, 6)
-        x2 = randint(-6, 6)
-        x3 = randint(-6, 6)
-        y1 = randint(-6, 6)
-        y2 = randint(-6, 6)
-        y3 = randint(-6, 6)
-        wyraz_wolny = randint(2, 8)
-        if random() > 0.5:
-            a1 = randint(2, 5)
-        else:
-            a1 = randint(-5, -2)
 
     f.write(choice([
-        f'Miejscem zerowym funkcji określonej wzorem f(x)={randint(2, 4)}-(x{choice(["+", "-"])}{randint(1, 8)}){choice(["+", "-"])}*{randint(2, 3)} jest?'
+        f'Miejscem zerowym funkcji określonej wzorem f(x)={liczby[1]}-(x{liczby_plus_minus[8]}){liczby_plus_minus[9]} jest?'
         ,
-        f'Miejscem zerowym funkcji określonej wzorem f(x)={randint(2, 4)}(x{choice(["+", "-"])}{randint(1, 8)}){choice(["+", "-"])}{randint(2, 8)} jest?'
+        f'Miejscem zerowym funkcji określonej wzorem f(x)={liczby[1]}(x{liczby_plus_minus[8]}){liczby_plus_minus[9]} jest?'
         ,
-        f'Miejscem zerowym funkcji określonej wzorem f(x)={randint(2, 4)}(x{choice(["+", "-"])}{randint(1, 8)}){choice(["+", "-"])}\u221A{randint(2, 3)} jest?'
+        f'Miejscem zerowym funkcji określonej wzorem f(x)={liczby[1]}(x{liczby_plus_minus[8]}){liczby_plus_minus[9]}\u221A{randint(2, 3)} jest?'
         ,
-        f'Punkt A=({x1},{y1}) należy do funkcji określonej wzorem f(x)={x2}x+b . Stąd wynika że b=\n'
-        f'A. {ułamki.skracanie(-1 * x1 * y1, x2)} B. {y1 + x2 * x1} C. {ułamki.skracanie(x2 * y1, x1)} D. {y1 - x2 * x1}'
+        f'Punkt A=({liczby[0]},{liczby[1]}) należy do funkcji określonej wzorem f(x)={liczby[3]}x+b . Stąd wynika że b=?'
         ,
-        f'Dla jakiego m podane punkty są współliniowe? A({x1},{y1}) B({x2}-{randint(2, 4)}m,{y2}) C({x3},{y3})'
+        f'Dla jakiego m podane punkty są współliniowe? A({liczby[0]},{liczby[1]}) B({liczby[2]}{liczby_plus_minus[9]}m,{liczby[3]}) C({liczby[4]},{liczby[5]})'
         ,
-        f'Wyznacz równanie prostej przechodzącej przez punkt E({x1},{y1}) i {rowno_czy_prosto} do prostej y={a1}x+{wyraz_wolny}\n'
-        f'A. y={a1}x+{-1 * (x1 * a1 - y1)}  B. y={a1}x+{x1 * a1 - y1}  C. y={ułamki.skracanie(-1, a1)}x+{ułamki.skracanie(y1 * a1 + x1, a1)}  D. y={ułamki.skracanie(-1, a1)}x+{ułamki.skracanie(y1 * a1 - x1, a1)}  '
+        f'Wyznacz równanie prostej przechodzącej przez punkt E({liczby[0]},{liczby[1]}) i {rowno_czy_prosto} do prostej y={liczby[2]}x{liczby_plus_minus[8]}'
         ,
-        f'Dla jakiej wartości parametru m punkt M({x1},{y1}-m) należy do wykresu funkcji liniowej y={x2}x{choice(["+" + str(wyraz_wolny), "-" + str(wyraz_wolny)])}\n'
-        f'A. m= {y1 + x2 * x1 - wyraz_wolny} B. m= {y1 - x2 * x1 + wyraz_wolny} C. m= {y1 - x2 * x1 - wyraz_wolny} D. m= {y1 + x2 * x1 + wyraz_wolny} '
+        f'Dla jakiej wartości parametru m punkt M({liczby[0]},{liczby[1]}{liczby_plus_minus[7]}m) należy do wykresu funkcji liniowej y={liczby[8]}x{liczby_plus_minus[9]}'
         ,
-        f'Dla jakiej wartości parametru m funkcja liniowa y=({a1}{choice(["+", "-"])}{wyraz_wolny}m)x+{x1} jest {choice(["rosnąca", "malejąca"])}?\n'
-        f'A. m>{ułamki.skracanie(a1, -1 * wyraz_wolny)} B. m>{ułamki.skracanie(a1, wyraz_wolny)}  C. m<{ułamki.skracanie(a1, wyraz_wolny)}  D. m<{ułamki.skracanie(a1, -1 * wyraz_wolny)} '
+        f'Dla jakiej wartości parametru m funkcja liniowa y=({liczby[0]}{liczby_plus_minus[8]}m)x{liczby_plus_minus[9]} jest {choice(["rosnąca", "malejąca"])}?'
         ,
-        f'Prosta przechodzi przez punkt A({x1},{x2}) oraz przez punkt D({y1},{y2}) jej {choice(["współczynnik kierunkowy", "wyraz wolny"])} wynosi?\n'
+        f'Prosta przechodzi przez punkt A({liczby[0]},{liczby[1]}) oraz przez punkt D({liczby[2]},{liczby[3]}) jej {choice(["współczynnik kierunkowy", "wyraz wolny"])} wynosi?'
         ,
-        f'Proste o równaniach {x1}x+{y1}'
+        f'Proste o równaniach {liczby[0]}x{liczby_plus_minus[7]} oraz ({liczby[0]}x{liczby_plus_minus[8]}m)x{liczby_plus_minus[9]} są {choice(["równoległe", "prostopadłe"])} dla m= '
+        ,
+        f'Wiadomo, że f({liczby[0]})={liczby[1]} oraz że f(x)={liczby[2]}x{liczby_plus_minus[9]}b, oblicz b.'
+        ,
+        f''
 
     ]))
     f.write('\n\n')

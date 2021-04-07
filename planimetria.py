@@ -42,7 +42,7 @@ def czworokaty():
         ,
         f'Wiedząc że dłuższa podstawa trapezu równoramiennego ma dugość {a*4} a krótsza jest dwa razy krótsza, oblicz jego pole'
         ,
-        f'Prostokąt o bokach długości {a} oraz {b} ma {choice("pole równe","przekątną równą")} ?'
+        f'Prostokąt o bokach długości {a} oraz {b} ma {choice(["pole równe","przekątną równą"])} ?'
         ]))
     f.write("\n\n")
 
