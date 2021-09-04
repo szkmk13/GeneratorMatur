@@ -3,6 +3,44 @@ from random import random, randint
 f = open("zadania.doc", 'a+', encoding="utf-8")
 
 
+def fraction_change(fraction):
+    fractions = {
+        0.5: "1/2",
+        1.5: "3/2",
+        2.5: "5/2",
+        3.5: "7/2",
+        4.5: "9/2",
+        5.5: "11/2",
+        6.5: "13/2",
+        7.5: "15/2",
+        0.25: "1/4",
+        0.75: "3/4",
+        1.25: "5/4",
+        1.75: "7/4",
+        2.25: "9/4",
+        2.75: "11/4",
+        3.25: "13/4",
+        3.75: "15/4",
+        0.125: "1/8",
+        0.375: "3/8",
+        0.625: "5/8",
+        0.875: "7/8",
+        1.125: "9/8",
+        1.375: "11/8",
+        1.625: "13/8",
+        1.875: "15/8",
+        1: 1,
+        2: 2,
+        3: 3,
+        4: 4,
+        8: 8
+    }
+    try:
+        print(fractions[fraction])
+    except:
+        KeyError
+
+
 def dodawanie_ulamkow():
     for j in range(14):
         liczniki = []
@@ -70,4 +108,3 @@ def skracanie(licznik, mianownik):
         ulamek = "-" + str(ulamek)
 
     return ulamek
-

@@ -27,40 +27,15 @@ def upraszczanie_wyrazen():
     f.write("=\n")
 
 
-
-
-def wzory_vieta():
-    while True:
-        a = randint(-15, 15)
-        b = randint(-115, 115)
-        c = randint(-115, 115)
-        delta = b * b - 4 * a * c
-        if (delta in [0, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225]) and (
-                a != 0) and b != 0 and c != 0:
-            break
-
-    wzor_funkcji = f' x\u00b2'
-    if b != 0:
-        if b > 0:
-            wzor_funkcji += f'+{b}x'
-        else:
-            wzor_funkcji += f'{b}x'
-    if c != 0:
-        if c > 0:
-            wzor_funkcji += f'+{c}'
-        else:
-            wzor_funkcji += f'{c}'
-    f.write(wzor_funkcji)
-    f.write("\n")
-
-
 def counter(function):  # counter(nazwafunkcji)
     global count
     count += 1
     print(count, end='. ')
     function()
 
-matura.potegi()
+
+#ułamki.fraction_change(randint(1, 16) / choice([2, 4, 8]))
+
 while True:
 
     print("""
@@ -92,6 +67,7 @@ while True:
             matura.wzory_sm()
             matura.logarytm(choice([2, 3, 5]))
             # matura.pierwiastki()
+            matura.potegi()
             matura.usuwanie_niewymiernosci()
             matura.procenty()
             matura.procenty()
@@ -110,8 +86,8 @@ while True:
 
 
         elif cotam == 4:
-            for i in range(25):
-                upraszczanie_wyrazen()
+            for i in range(10):
+                # upraszczanie_wyrazen()
                 # nierownosc.kwadratowa()
                 # matura.wzory_sm()
                 # wzory_vieta()

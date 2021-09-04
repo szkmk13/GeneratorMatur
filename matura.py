@@ -1,14 +1,18 @@
 from random import choice, randint, random
 import ułamki
-import cartesian_plane
+
+# import cartesian_plane
+
 
 f = open("zadania.doc", 'a+', encoding="utf-8")
 
 
 def number_to_substract(number):
     number = str(number)
+    unicode_substract_offset = 2080
     subscript = ''
     for character in number:
+
         if character == '.':
             subscript += '\u0323 '
         if character == "0":
@@ -63,6 +67,31 @@ def number_to_superscript(number):
         if character == "-":
             superscript += '\u207B'
     return superscript
+
+
+def wzory_vieta():
+    while True:
+        a = randint(-15, 15)
+        b = randint(-115, 115)
+        c = randint(-115, 115)
+        delta = b * b - 4 * a * c
+        if (delta in [0, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225]) and (
+                a != 0) and b != 0 and c != 0:
+            break
+
+    wzor_funkcji = f' x\u00b2'
+    if b != 0:
+        if b > 0:
+            wzor_funkcji += f'+{b}x'
+        else:
+            wzor_funkcji += f'{b}x'
+    if c != 0:
+        if c > 0:
+            wzor_funkcji += f'+{c}'
+        else:
+            wzor_funkcji += f'{c}'
+    f.write(wzor_funkcji)
+    f.write("\n")
 
 
 def logarytm(podstawa):
@@ -140,21 +169,24 @@ def usuwanie_niewymiernosci():
         f.write(f' {randint(2, 6)}{choice(["+", "-"])}\u221A{pierw} \n\n')
 
 
+procenty_variant = [1, 2, 3, 4, 5, 6]
+
+
 def procenty():
-    f.write(choice([
-        f'Cena towaru po obniżce o {randint(1, 5) * 5}% wynosi {randint(2, 12) * 252}zł. Cena przed rabatem to?'
-        ,
-        f'Cena towaru po podwyżce o {randint(1, 3) * 20}% wynosi {randint(2, 12) * 336}zł. Cena przed podwyżką to?'
-        ,
-        f'Cena zmniejszono o {randint(1, 3) * 25}%. O ile % trzeba zwiększyć cenę aby wrócić do ceny początkowej?'
-        ,
-        f'Towar kosztuje {randint(3, 15) * 30}zł jego cena po obniżce o {randint(1, 4) * 5}% wynosi:'
-        ,
-        f'Towar kosztuje {randint(3, 15) * 30}zł jego cena po podwyżce o {randint(1, 4) * 5}% wynosi:'
-        ,
-        f'liczba {randint(1, 5) * 10} to ile procent liczby {randint(2, 5) * 100} ?'
-    ]))
-    f.write("\n\n")
+    exercises = {
+        1: f'Cena towaru po obniżce o {randint(1, 5) * 5}% wynosi {randint(2, 12) * 252}zł. Cena przed rabatem to?',
+        2: f'Cena towaru po podwyżce o {randint(1, 3) * 20}% wynosi {randint(2, 12) * 336}zł. Cena przed podwyżką to?',
+        3: f'Cena zmniejszono o {randint(1, 3) * 25}%. O ile % trzeba zwiększyć cenę aby wrócić do ceny początkowej?',
+        4: f'Towar kosztuje {randint(3, 15) * 30}zł jego cena po obniżce o {randint(1, 4) * 5}% wynosi:',
+        5: f'Towar kosztuje {randint(3, 15) * 30}zł jego cena po podwyżce o {randint(1, 4) * 5}% wynosi:',
+        6: f'liczba {randint(1, 5) * 10} to ile procent liczby {randint(2, 5) * 100} ?'
+    }
+    try:
+        a = choice(procenty_variant)
+        f.write(exercises[a] + '\n\n')
+        procenty_variant.remove(a)
+    except:
+        IndexError
 
 
 def potegi():
@@ -190,7 +222,6 @@ def potegi():
             f.write(str(liczba_potegowana))
             f.write(str(number_to_superscript(potega)))
     f.write("\n\n")
-
 
     return
 
@@ -263,6 +294,9 @@ def wzory_sm():
     f.write(f'({wynik[0]}{choice(["+", "-"])}{wynik[1]})\u00b2 = \n\n')
 
 
+liniowa_variant = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+
 def liniowa_abcd():
     def zmiana(x):
         if x > 0:
@@ -277,41 +311,49 @@ def liniowa_abcd():
         while x == 0 or x in liczby:
             x = randint(-8, 8)
         liczby.append(x)
+
     liczby_plus_minus = list(map(zmiana, liczby))
     rowno_czy_prosto = choice(['równoległej', 'prostopadłej'])
 
-    f.write(choice([
-        f'Miejscem zerowym funkcji określonej wzorem f(x)={liczby[1]}-(x{liczby_plus_minus[8]}){liczby_plus_minus[9]} jest?'
+    exercises = {
+        1: f'Miejscem zerowym funkcji określonej wzorem f(x)={liczby[1]}-(x{liczby_plus_minus[8]}){liczby_plus_minus[9]} jest?'
         ,
-        f'Miejscem zerowym funkcji określonej wzorem f(x)={liczby[1]}(x{liczby_plus_minus[8]}){liczby_plus_minus[9]} jest?'
+        2: f'Miejscem zerowym funkcji określonej wzorem f(x)={liczby[1]}(x{liczby_plus_minus[8]}){liczby_plus_minus[9]} jest?'
         ,
-        f'Miejscem zerowym funkcji określonej wzorem f(x)={liczby[1]}(x{liczby_plus_minus[8]}){liczby_plus_minus[9]}\u221A{randint(2, 3)} jest?'
+        3: f'Miejscem zerowym funkcji określonej wzorem f(x)={liczby[1]}(x{liczby_plus_minus[8]}){liczby_plus_minus[9]}\u221A{randint(2, 3)} jest?'
         ,
-        f'Punkt A=({liczby[0]},{liczby[1]}) należy do funkcji określonej wzorem f(x)={liczby[3]}x+b . Stąd wynika że b=?'
+        4: f'Punkt A=({liczby[0]},{liczby[1]}) należy do funkcji określonej wzorem f(x)={liczby[3]}x+b . Stąd wynika że b=?'
         ,
-        f'Dla jakiego m podane punkty są współliniowe? A({liczby[0]},{liczby[1]}) B({liczby[2]}{liczby_plus_minus[9]}m,{liczby[3]}) C({liczby[4]},{liczby[5]})'
+        5: f'Dla jakiego m podane punkty są współliniowe? A({liczby[0]},{liczby[1]}) B({liczby[2]}{liczby_plus_minus[9]}m,{liczby[3]}) C({liczby[4]},{liczby[5]})'
         ,
-        f'Wyznacz równanie prostej przechodzącej przez punkt E({liczby[0]},{liczby[1]}) i {rowno_czy_prosto} do prostej y={liczby[2]}x{liczby_plus_minus[8]}'
+        6: f'Wyznacz równanie prostej przechodzącej przez punkt E({liczby[0]},{liczby[1]}) i {rowno_czy_prosto} do prostej y={liczby[2]}x{liczby_plus_minus[8]}'
         ,
-        f'Dla jakiej wartości parametru m punkt M({liczby[0]},{liczby[1]}{liczby_plus_minus[7]}m) należy do wykresu funkcji liniowej y={liczby[8]}x{liczby_plus_minus[9]}'
+        7: f'Dla jakiej wartości parametru m punkt M({liczby[0]},{liczby[1]}{liczby_plus_minus[7]}m) należy do wykresu funkcji liniowej y={liczby[8]}x{liczby_plus_minus[9]}'
         ,
-        f'Dla jakiej wartości parametru m funkcja liniowa y=({liczby[0]}{liczby_plus_minus[8]}m)x{liczby_plus_minus[9]} jest {choice(["rosnąca", "malejąca"])}?'
+        8: f'Dla jakiej wartości parametru m funkcja liniowa y=({liczby[0]}{liczby_plus_minus[8]}m)x{liczby_plus_minus[9]} jest {choice(["rosnąca", "malejąca"])}?'
         ,
-        f'Prosta przechodzi przez punkt A({liczby[0]},{liczby[1]}) oraz przez punkt D({liczby[2]},{liczby[3]}) jej {choice(["współczynnik kierunkowy", "wyraz wolny"])} wynosi?'
+        9: f'Prosta przechodzi przez punkt A({liczby[0]},{liczby[1]}) oraz przez punkt D({liczby[2]},{liczby[3]}) jej {choice(["współczynnik kierunkowy", "wyraz wolny"])} wynosi?'
         ,
-        f'Proste o równaniach {liczby[0]}x{liczby_plus_minus[7]} oraz ({liczby[0]}x{liczby_plus_minus[8]}m)x{liczby_plus_minus[9]} są {choice(["równoległe", "prostopadłe"])} dla m= '
+        10: f'Proste o równaniach y={liczby[0]}x{liczby_plus_minus[7]} oraz y=({liczby[0]}{liczby_plus_minus[8]}m)x{liczby_plus_minus[9]} są {choice(["równoległe", "prostopadłe"])} dla m= '
         ,
-        f'Wiadomo, że f({liczby[0]})={liczby[1]} oraz że f(x)={liczby[2]}x{liczby_plus_minus[9]}b, oblicz b.'
+        11: f'Wiadomo, że f({liczby[0]})={liczby[1]} oraz że f(x)={liczby[2]}x{liczby_plus_minus[9]}b, oblicz b.'
         ,
-        f''
-
-    ]))
-    f.write('\n\n')
+        12: f'Oblicz wartość funkcji f(x)={liczby[0]}x{liczby_plus_minus[9]} dla argumentu równego {liczby[1] * 2}'
+    }
+    try:
+        a = choice(liniowa_variant)
+        f.write(exercises[a] + '\n\n')
+        liniowa_variant.remove(a)
+    except:
+        IndexError
 
 
 def liniowa_obrazek():
     f.write(f'{choice(["współczynnik kierunkowy", "wyraz wolny"])} pokazanej na rysunku wynosi:')
     cartesian_plane.linear_function()
+
+
+kwadratowa_variant = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 
 def kwadratowa():
@@ -336,20 +378,27 @@ def kwadratowa():
             wzor_funkcji += f'{c}'
     print(wzor_funkcji)
 
-    f.write(choice([
-        f'Jaką wartość ma funkcja f(x)={wzor_funkcji} dla argumentu równego {randint(-5, 5)} ?',
-        f'Określ monotoniczność funkcji f(x)={wzor_funkcji}',
-        f'Podaj zbiór wartości funkcji f(x)={wzor_funkcji}',
-        f'Dla jakiej wartości parametru m punkt A=({randint(-5, 5)},{randint(1, 5)}-m) należy do wyrkesu funkcji f(x)={wzor_funkcji}',
-        f'Podaj wzór funkcji f(x)={wzor_funkcji} w postaci iloczynowej',
-        f'Podaj wzór funkcji f(x)={wzor_funkcji} w postaci kanonicznej',
-        f'Oblicz współrzędne wierzchołka paraboli określonej wzorem f(x)={wzor_funkcji}',
-        f'Funkcja o wzorze f(x)={wzor_funkcji} przecina oś OY w punkcie',
-        f'Oś symetrii funkcji f(x)={wzor_funkcji} to?',
-        f'Ile miejsc zerowych ma funkcja określona wzorem f(x)={wzor_funkcji}'
+    exercises = {
+        1: f'Jaką wartość ma funkcja f(x)={wzor_funkcji} dla argumentu równego {randint(-5, 5)} ?',
+        2: f'Określ monotoniczność funkcji f(x)={wzor_funkcji}',
+        3: f'Podaj zbiór wartości funkcji f(x)={wzor_funkcji}',
+        4: f'Dla jakiej wartości parametru m punkt A=({randint(-5, 5)},{randint(1, 5)}-m) należy do wyrkesu funkcji f(x)={wzor_funkcji}',
+        5: f'Podaj wzór funkcji f(x)={wzor_funkcji} w postaci iloczynowej',
+        6: f'Podaj wzór funkcji f(x)={wzor_funkcji} w postaci kanonicznej',
+        7: f'Oblicz współrzędne wierzchołka paraboli określonej wzorem f(x)={wzor_funkcji}',
+        8: f'Funkcja o wzorze f(x)={wzor_funkcji} przecina oś OY w punkcie',
+        9: f'Oś symetrii funkcji f(x)={wzor_funkcji} to?',
+        10: f'Ile miejsc zerowych ma funkcja określona wzorem f(x)={wzor_funkcji}'
+    }
+    try:
+        a = choice(kwadratowa_variant)
+        f.write(exercises[a] + '\n\n')
+        kwadratowa_variant.remove(a)
+    except:
+        IndexError
 
-    ]))
-    f.write('\n\n')
+
+rozne_variant = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 
 def rozne():
@@ -383,20 +432,25 @@ def rozne():
         if jaka_cyfra not in jakie_cyfry:
             jakie_cyfry.append(jaka_cyfra)
 
-    f.write(choice([
-        f'Dane są dwie liczby a = {a}*10^{potega1} i b = {b}*10^{potega2} {polecenie} tych liczb to?\n'
-        f'A={a * b}*10^{potega1 + potega2 + 2} B={a * b / 10000}*10^{potega1 + potega2 + 4}  C={a / b * 10}*10^{potega1 - potega2 + 2} D={a / b}*10^{potega1 - potega2}'
+    exercises = {
+        1: f'Dane są dwie liczby a = {a}*10^{potega1} i b = {b}*10^{potega2} {polecenie} tych liczb to?\n',
+        2: f'A={a * b}*10^{potega1 + potega2 + 2} B={a * b / 10000}*10^{potega1 + potega2 + 4}  C={a / b * 10}*10^{potega1 - potega2 + 2} D={a / b}*10^{potega1 - potega2}'
         ,
-        f'Zaokrąglenie liczby {q} do {miejsce} to :'
+        3: f'Zaokrąglenie liczby {q} do {miejsce} to :'
         ,
-        f'Oblicz {mediana_czy_srednia} zestawu liczb: {liczby} . '
+        4: f'Oblicz {mediana_czy_srednia} zestawu liczb: {liczby} . '
         ,
-        f'Ile jest liczb {ilu_cyfrowa} cyfrowych podzielnych przez {podzielnosc_przez}'
+        5: f'Ile jest liczb {ilu_cyfrowa} cyfrowych podzielnych przez {podzielnosc_przez}'
         ,
-        f'Wszystkich liczb {ilu_cyfrowa} cyfrowych w których występują tylko {jakie_cyfry} jest?'
+        6: f'Wszystkich liczb {ilu_cyfrowa} cyfrowych w których występują tylko {jakie_cyfry} jest?'
 
-    ]))
-    f.write('\n\n')
+    }
+    try:
+        a = choice(rozne_variant)
+        f.write(exercises[a] + '\n\n')
+        rozne_variant.remove(a)
+    except:
+        IndexError
 
 
 def liniowa_otwarte():
