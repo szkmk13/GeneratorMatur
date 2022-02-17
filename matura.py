@@ -177,14 +177,14 @@ def procenty():
         1: f'Cena towaru po obniżce o {randint(1, 5) * 5}% wynosi {randint(2, 12) * 252}zł. Cena przed rabatem to?',
         2: f'Cena towaru po podwyżce o {randint(1, 3) * 20}% wynosi {randint(2, 12) * 336}zł. Cena przed podwyżką to?',
         3: f'Cena zmniejszono o {randint(1, 3) * 25}%. O ile % trzeba zwiększyć cenę aby wrócić do ceny początkowej?',
-        4: f'Towar kosztuje {randint(3, 15) * 30}zł jego cena po obniżce o {randint(1, 4) * 5}% wynosi:',
-        5: f'Towar kosztuje {randint(3, 15) * 30}zł jego cena po podwyżce o {randint(1, 4) * 5}% wynosi:',
+        4: f'Towar kosztuje {randint(3, 15) * 30}zł jego cena po obniżce o {randint(1, 6) * 5}% wynosi:',
+        5: f'Towar kosztuje {randint(3, 15) * 30}zł jego cena po podwyżce o {randint(1, 6) * 5}% wynosi:',
         6: f'liczba {randint(1, 5) * 10} to ile procent liczby {randint(2, 5) * 100} ?'
     }
     try:
         a = choice(procenty_variant)
         f.write(exercises[a] + '\n\n')
-        procenty_variant.remove(a)
+        #procenty_variant.remove(a)
     except:
         IndexError
 

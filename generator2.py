@@ -12,13 +12,14 @@ count = 0
 
 def upraszczanie_wyrazen():
     liczby = []
+    litery=["a","b","c","x"]
     for item in range(5):
         if random() > 0.5:
             x = randint(-8, 8)
             if x > 0:
                 x = "+" + str(x)
         else:
-            x = choice(["+", "-"]) + str(randint(2, 9)) + "x"
+            x = choice(["+", "-"]) + str(randint(2, 9)) + litery[randint(0,len(litery)-1)]
         liczby.append(x)
 
     f.write(f'{randint(-9, -3)}')
@@ -34,7 +35,7 @@ def counter(function):  # counter(nazwafunkcji)
     function()
 
 
-#ułamki.fraction_change(randint(1, 16) / choice([2, 4, 8]))
+# ułamki.fraction_change(randint(1, 16) / choice([2, 4, 8]))
 
 while True:
 
@@ -86,10 +87,10 @@ while True:
 
 
         elif cotam == 4:
-            for i in range(10):
-                # upraszczanie_wyrazen()
+            for i in range(20):
+                upraszczanie_wyrazen()
                 # nierownosc.kwadratowa()
-                # matura.wzory_sm()
+                matura.wzory_sm()
                 # wzory_vieta()
                 # matura.kwadratowa()
                 # matura.procenty()
@@ -97,19 +98,21 @@ while True:
                 # matura.wzory_sm()
                 # matura.usuwanie_niewymiernosci()
                 # matura.logarytm(choice([2, 3, 5]))
-                matura.liniowa_abcd()
+                # matura.liniowa_abcd()
             # matura.liniowa_obrazek()
             # ciag.arytmetyczny_zamkniete()
             # ciag.geometryczny_zamkniete()
         elif cotam == 5:
             for i in range(100):
-                matura.liniowa_otwarte()
-                matura.liniowa_abcd()
-                matura.pierwiastki()
-                matura.usuwanie_niewymiernosci()
-                matura.logarytm(2)
-                matura.logarytm(3)
-                matura.logarytm(5)
+                #matura.liniowa_otwarte()
+                #matura.liniowa_abcd()
+                #matura.pierwiastki()
+                #matura.usuwanie_niewymiernosci()
+                #nierownosc.kwadratowa()
+                #matura.logarytm(2)
+                #matura.logarytm(3)
+                #matura.logarytm(5)
+                matura.procenty()
 
 
 
